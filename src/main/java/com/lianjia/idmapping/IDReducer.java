@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class IDReducer extends Reducer<Text, MapWritable, MapWritable, MapWritable> {
+public class IDReducer extends Reducer<Text, Text, Text, MapWritable> {
     @Override
-    protected void reduce(Text key, Iterable<MapWritable> values, Context context) throws IOException,InterruptedException{
+    protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException,InterruptedException{
 
         ArrayList<MapWritable> lj_device_list = new ArrayList<MapWritable>();
 
