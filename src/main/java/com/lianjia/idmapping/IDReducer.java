@@ -23,7 +23,7 @@ public class IDReducer extends Reducer<Text, MapWritable, MapWritable, MapWritab
             for(int i = 0; i < lj_device_list.size(); i++){
                 MapWritable lj_map = lj_device_list.get(i);
                 for(Writable lj_key : lj_device_map.keySet()){
-                    if(lj_map.containsKey((Text)lj_key)){
+                    if(lj_map.containsKey(lj_key)){
                         lj_device_list.get(i).putAll(lj_device_map);
                         is_contain = 1;
                         break;
@@ -57,10 +57,11 @@ public class IDReducer extends Reducer<Text, MapWritable, MapWritable, MapWritab
         for(MapWritable lj_device_map : values){
             MapWritable lj_device_merge = null;
             int is_contain = 0;
-            for(lj_device_merge : lj_device_list){
+            for(MapWritable lj_merge_key : lj_device_list){
                 for(Writable lj_key : lj_device_map.keySet()){
-                    if(lj_device_merge.containsKey(lj_key)){
+                    if(lj_merge_key.containsKey(lj_key)){
                         is_contain = 1;
+                        lj_device_merge = lj_merge_key;
                         break;
                     }
                 }
