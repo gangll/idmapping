@@ -16,13 +16,13 @@ public class IDMerge {
 
         job.setMapperClass(IDMapper.class);
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(MapWritable.class);
-        FileInputFormat.setInputPaths(job, new Path("/user/hive/warehouse/tmp.db/tmp_dw_log_app_device_da_testx20190728000000"));
+        job.setMapOutputValueClass(Text.class);
+        FileInputFormat.setInputPaths(job, new Path(args[0]));
 
         job.setReducerClass(IDReducer.class);
-        job.setOutputKeyClass(MapWritable.class);
-        job.setOutputValueClass(MapWritable.class);
-        FileOutputFormat.setOutputPath(job, new Path("/user/hive/warehouse/tmp.db/tmp_dw_log_app_device_da_testx20190728000000/out"));
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(Text.class);
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
         job.waitForCompletion(true);
     }
